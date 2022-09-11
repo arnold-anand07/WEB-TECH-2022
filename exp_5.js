@@ -85,7 +85,6 @@ function flip() {
     img1.src = list[0];
     tail.innerHTML = t + 1;
   }
-  img.src = l[s];
 }
 function reset() {
   var head = document.getElementById("tc");
