@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ques 1</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    </head>
+    <body ng-app="app" ng-controller="ctrl">
+        <h1>User Validation Form</h1>
+        <form action="/" name="form">
+            Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="text" required ng-model="uname" name="uname"> <span name="span" style="color:red" ng-show="form.uname.$invalid-required">Name is required</span> <span name="span" style="color:red" ng-show="form.uname.$valid && num_found()">Name cant have numbers</span> <br><br>
+            Password &nbsp;&nbsp;&nbsp;: <input type="password" required ng-model="pass" name="pass" minlength="8"> <span name="span" style="color:red" ng-show="form.pass.$invalid">Password of min length 8 is required</span> <span name="span" style="color:red" ng-show="form.pass.$valid && invalid_pass()">Password should have atleast 1 uppercase, 1 lowercase, 1 number and minimum 8 characters</span> <br><br>
+            Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="number" required ng-model="age" name="age" min="18" max="30"> <span name="span" style="color:red" ng-show="form.age.$invalid">Age should be between 18 and 30</span> <br><br>
+            Ph Number : <input type="number" required ng-model="ph" name="ph" maxlength="10" minlength="10"> <span name="span" style="color:red" ng-show="form.ph.$invalid">Number should have 10 digits</span> <br><br>
+            Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="email" required ng-model="mail" name="mail"><span name="span" style="color:red" ng-show="form.mail.$invalid">Enter a valid email</span> <br><br>
+            Gender &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="radio" required ng-model="gender" name="gender" value="M">Male <input type="radio" required ng-model="gender" name="gender" value="F"> Female <span name="span" style="color:red" ng-show="form.gender.$invalid-required">Select a gender</span> <br><br>
+            State &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
+                    <select ng-model="state" name="state" required>
+                        <option value="1">KL</option>
+                        <option value="2">TN</option>
+                        <option value="3">KA</option>
+                        <option value="4">TL</option>
+                        <option value="5">MH</option>
+                    </select> <span style="color:red" ng-show="form.state.$invalid-required">State is required</span> <br><br>
+
+            <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp; <button type="submit" ng-disabled="is_disabled()">Submit</button>
+        </form>
+        <script>
+            let app = angular.module("app",[]);
+            app.controller('ctrl',($scope)=>{
+                $scope.num_found = () => {
+                    return /\d/.test($scope.uname);
+                };
+
+                $scope.invalid_pass = () =>{
+                    return !/^(?:(?=.\d)(?=.[a-z])(?=.[A-Z]).)$/.test($scope.pass);
+                };
+
+                $scope.is_disabled = () =>
+                {
+                    let list = document.getElementsByName("span");
+                    let count = 0;
+                    for(let i = 0;i < list.length; i++)
+                    {
+                        if(list[i].className == 'ng-hide')
+                        {
+                            count+=1;
+                        }
+                    }
+                    return !(count == 8);
+                };
+
+            });
+        </script>
+        <br><br>
+        <a href="exp9b.html">Next question!</a>
+    </body>
+</html>
