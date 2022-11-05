@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exp10</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    </head>
+    <body ng-app="app" ng-controller="ctrl" style:text-align="center">
+        <h1>Megaplay 2023 Registration Form!</h1>
+        <form action="/" name="form">
+            Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="text" required ng-model="uname" name="uname"> <span name="span" style="color:red" ng-show="form.uname.$invalid-required">Name is required</span> <span name="span" style="color:red" ng-show="form.uname.$valid && num_found()">Name cant have numbers</span> <br><br>
+            Phone Number : <input type="number" required ng-model="ph" name="ph" maxlength="10" minlength="10"> <span name="span" style="color:red" ng-show="form.ph.$invalid">Number should have 10 digits</span> <br><br>
+            Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="email" required ng-model="mail" name="mail"><span name="span" style="color:red" ng-show="form.mail.$invalid">Enter a valid email</span> <br><br>
+            Department&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
+            <Select name="dept" ng-model="dept" required>
+                <option>CSE</option>
+                <option>Mech</option>
+                <option>ECE</option>
+                <option>Bio</option>
+                </Select><span style="color:red" ng-show="form.dept.$invalid-required">Department is required</span> <br><br>
+            Participating Event&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                <Select name="event" ng-model="part" required>
+                    <option>Acting</option>
+                    <option>Singing</option>
+                    <option>dancing</option>
+                    <option>MC</option>
+                    </Select><span style="color:red" ng-show="form.event.$invalid-required">Event is required</span> <br><br>
+            Gender &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
+            <input type="radio" required ng-model="gender" name="gender" value="M">Male <input type="radio" required ng-model="gender" name="gender" value="F"> Female <span name="span" style="color:red" ng-show="form.gender.$invalid-required">Select a gender</span> <br><br>
+            <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp; <button type="submit" ng-disabled="is_disabled()">Submit</button>
+        </form>
+        <script>
+            let app = angular.module("app",[]);
+            app.controller('ctrl',($scope)=>{
+                $scope.num_found = () => {
+                    return /\d/.test($scope.uname);
+                };
+
+                $scope.invalid_pass = () =>{
+                    return !/^(?:(?=.\d)(?=.[a-z])(?=.[A-Z]).)$/.test($scope.pass);
+                };
+
+                $scope.is_disabled = () =>
+                {
+                    let list = document.getElementsByName("span");
+                    let count = 0;
+                    for(let i = 0;i < list.length; i++)
+                    {
+                        if(list[i].className == 'ng-hide')
+                        {
+                            count+=1;
+                        }
+                    }
+                    return !(count == 8);
+                };
+
+            });
+        </script>
+        <br><br>
+        <a href="exp10b.html">Next question!</a>
+    </body>
+</html>

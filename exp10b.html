@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+<body ng-app="myApp">
+<h1>Resume Page</h1>
+<p>The below are the resume of the following register numbers</p>
+<br><br>
+
+<ul>
+    <li><a href="#/!">URK20CS2041</a></li><br>
+    <li><a href="#!URK20CS2017">URK20CS2017</a></li><br>
+    <li><a href="#!URK20CS2038">URK20CS2038</a></li><br>
+    <li><a href="#!URK20CS2045">URK20CS2045</a></li><br>
+
+</ul>
+
+
+<div ng-view></div>
+
+<script>
+var app = angular.module("myApp", ["ngRoute"]);
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl : "Exp1.html"
+    })
+    .when("/URK20CS2017", {
+        templateUrl :"paviexp1.html"
+    })
+    .when("/URK20CS2038", {
+        templateUrl : "ashexp1.html"
+    })
+    .when("/URK20CS2045", {
+        templateUrl : "andyexp1.html"
+    });
+});
+</script>
+<br><br>
+<a href="Exp10a.html">Previous question!</a>&nbsp;
+
+</body>
+</html>
