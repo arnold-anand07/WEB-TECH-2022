@@ -4,8 +4,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 
 <body ng-app="myApp">
-<h1>Experiment Pages</h1>
-<p>The below are the resume of the following experiment pages</p>
+<h1>Experiment Pages - Angular Routing</h1>
 <br><br>
 
 <ul>
@@ -24,16 +23,16 @@ var app = angular.module("myApp", ["ngRoute"]);
 app.config(function($routeProvider) {
     $routeProvider
     .when("/Page1", {
-        templateUrl : "exp1.html"
+        templateUrl : "/exp1.html"
     })
     .when("/Page2", {
-        templateUrl :"exp2.html"
+        templateUrl :"/exp2.html"
     })
     .when("/Page3", {
-        templateUrl : "exp_3.html"
+        templateUrl : "/exp_3.html"
     })
     .when("/Page4", {
-        templateUrl : "exp_4.html"
+        templateUrl : "/exp_4.html"
     });
 });
 </script>
